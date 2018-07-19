@@ -55,6 +55,10 @@ func NewPostgres(dsn string) (*DB, error) {
 	return db, nil
 }
 
+func (db *DB) Close() error {
+	return db.Db.Close()
+}
+
 func (db *DB) AddObject(obj DBCreator) error {
 	obj.AddTable(db)
 	return nil
