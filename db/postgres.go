@@ -4,6 +4,7 @@ import (
 	"database/sql/driver"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"reflect"
 
 	gorp "gopkg.in/gorp.v2"
@@ -54,6 +55,7 @@ type PostgresDialect struct {
 // ToSqlType returns the SQL column type for the given Go type
 func (d PostgresDialect) ToSqlType(val reflect.Type, maxsize int, isAutoIncr bool) string {
 	// Force JSONText to use sqlType: JSONB
+	fmt.Println(val)
 	if val == reflect.TypeOf(JSONB{}) {
 		return "JSONB"
 	}
